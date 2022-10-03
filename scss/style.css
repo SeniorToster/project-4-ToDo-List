@@ -436,6 +436,9 @@ li {
 .todo-categories__link_active {
   color: #ea5959;
 }
+.todo-categories__link:hover {
+  color: #ea5959;
+}
 
 .todo-main {
   padding: 30px 40px;
@@ -483,27 +486,49 @@ li {
   background-image: url("/img/plus-32.png");
   background-repeat: no-repeat;
   background-size: contain;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
 }
 .new-tack__add:hover {
   scale: 1.1;
   transition: scale 0.2s ease-in-out;
 }
 
+.tack-item {
+  display: flex;
+  align-items: center;
+}
 .tack-item:not(last-child) {
   margin-bottom: 16px;
+}
+.tack-item:hover .tack-item__delete {
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
 }
 .tack-item__wrapper {
   display: flex;
   align-items: center;
 }
-.tack-item__wrapper:hover .tack-item__delete {
-  opacity: 1;
-  transition: all 0.2s ease-in-out;
-}
 .tack-item__checkbox {
-  margin-right: 18px;
+  display: none;
+}
+.tack-item__checkbox:checked ~ .tack-item__checkmark {
+  background-color: #ea5959;
+}
+.tack-item__checkbox:checked ~ .tack-item__checkmark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 18px;
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.tack-item__checkbox:checked ~ .tack-item__text {
+  text-decoration: line-through;
+  opacity: 0.3;
 }
 .tack-item__text {
   font-weight: 400;
@@ -527,6 +552,20 @@ li {
 .tack-item__delete:hover {
   scale: 1.1;
   transition: scale 0.2s ease-in-out;
+}
+.tack-item__checkmark {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #ea5959;
+  margin-right: 18px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.tack-item__checkmark:hover {
+  scale: 1.1;
+  transition: all 0.2s ease-in-out;
 }
 
 /* компонент */

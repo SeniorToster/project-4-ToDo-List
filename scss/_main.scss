@@ -35,6 +35,9 @@
     &_active {
       color: $color-orange;
     }
+    &:hover {
+      color: $color-orange;
+    }
   }
 }
 
@@ -81,8 +84,8 @@
       background-image: url('/img/plus-32.png');
       background-repeat: no-repeat;
       background-size: contain;
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
     }
     &:hover {
       scale: 1.1;
@@ -92,19 +95,39 @@
 }
 
 .tack-item {
+  display: flex;
+  align-items: center;
   &:not(last-child) {
     margin-bottom: 16px;
+  }
+  &:hover .tack-item__delete {
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
   }
   &__wrapper {
     display: flex;
     align-items: center;
-    &:hover .tack-item__delete {
-      opacity: 1;
-      transition: all 0.2s ease-in-out;
-    }
   }
   &__checkbox {
-    margin-right: 18px;
+    display: none;
+    &:checked ~ .tack-item__checkmark {
+      background-color: $color-orange;
+    }
+    &:checked ~ .tack-item__checkmark::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 18px;
+      border: solid $color-white;
+      border-width: 0 3px 3px 0;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    &:checked ~ .tack-item__text {
+      text-decoration: line-through;
+      opacity: 0.3;
+    }
   }
   &__text {
     font-weight: 400;
@@ -127,6 +150,20 @@
     &:hover {
       scale: 1.1;
       transition: scale 0.2s ease-in-out;
+    }
+  }
+  &__checkmark {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid $color-orange;
+    margin-right: 18px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      scale: 1.1;
+      transition: all 0.2s ease-in-out;
     }
   }
 }
