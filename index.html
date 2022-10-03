@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="scss/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="todo">
+        <div class="todo-categories">
+          <ul class="todo-categories__list">
+            <li class="todo-categories__item">
+              <a
+                href="#"
+                class="todo-categories__link todo-categories__link_active"
+                >All</a
+              >
+            </li>
+            <li class="todo-categories__item">
+              <a href="#" class="todo-categories__link">Groceries</a>
+            </li>
+            <li class="todo-categories__item">
+              <a href="#" class="todo-categories__link">College</a>
+            </li>
+            <li class="todo-categories__item">
+              <a href="#" class="todo-categories__link">Payments</a>
+            </li>
+          </ul>
+        </div>
+        <div class="todo-main">
+          <h1 class="todo-main__title">Все Задачи</h1>
+          <div class="new-tack">
+            <input
+              type="text"
+              class="new-tack__input"
+              placeholder="Добавить новую задачу в категорию «Все»"
+            />
+            <button class="new-tack__add"></button>
+          </div>
+          <div class="tack-list">
+            <div class="tack-item">
+              <label class="tack-item__wrapper" id="1">
+                <input type="checkbox" class="tack-item__checkbox" id="1" />
+                <div class="tack-item__text">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. In,
+                  veniam.
+                </div>
+                <div class="tack-item__delete"></div>
+              </label>
+            </div>
+            <div class="tack-list__item tack-item">
+              <label class="tack-item__wrapper" id="1">
+                <input type="checkbox" class="tack-item__checkbox" id="1" />
+                <div>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. In,
+                  veniam.
+                </div>
+                <div class="tack-item__delete"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
