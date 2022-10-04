@@ -20,7 +20,7 @@
   width: 209px;
   display: flex;
   justify-content: center;
-  padding-top: 20%;
+  padding: 139px 51px;
   border-right: 1px solid #d8d8d8;
   &__item {
     &:not(last-child) {
@@ -28,11 +28,12 @@
     }
   }
   &__link {
-    font-weight: 700;
+    font-weight: 400;
     font-size: 22px;
     line-height: 26px;
-    color: $color-black;
+    color: #525252;
     &_active {
+      font-weight: 700;
       color: $color-orange;
     }
     &:hover {
@@ -107,6 +108,7 @@
   &__wrapper {
     display: flex;
     align-items: center;
+    margin-right: 28px;
   }
   &__checkbox {
     display: none;
@@ -136,6 +138,7 @@
     color: $color-grey;
   }
   &__delete {
+    flex-shrink: 0;
     cursor: pointer;
     opacity: 0;
     margin-right: 0;
@@ -153,6 +156,7 @@
     }
   }
   &__checkmark {
+    flex-shrink: 0;
     position: relative;
     width: 32px;
     height: 32px;
@@ -165,5 +169,21 @@
       scale: 1.1;
       transition: all 0.2s ease-in-out;
     }
+  }
+  &__select {
+    flex-shrink: 0;
+    width: 126px;
+    padding: 6px 0px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: $color-white;
+    background-color: $color-orange;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    margin-right: 28px;
+    appearance: none;
   }
 }
