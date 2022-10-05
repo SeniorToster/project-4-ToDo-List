@@ -1,6 +1,8 @@
 const newTack = document.querySelector('.new-tack__input');
 const tackList = document.querySelector('.tack-list');
 const newTackAdd = document.querySelector('.new-tack__add');
+const categories = document.querySelector('.todo-categories__list');
+
 const arrTack = [];
 
 newTackAdd.addEventListener('click', e => {
@@ -30,7 +32,6 @@ function addTackArr(text, arr) {
     id: Date.now(),
     text,
     check: false,
-    isCategoryDisabled: false,
     category: 'all',
   };
   arr.push(tack);
@@ -50,13 +51,17 @@ function addTacksDOM(arr) {
     <span class="tack-item__checkmark"></span>
     <div class="tack-item__text">${item.text}</div>
   </label>
-  <select class="tack-item__select" ${
-    item.isCategoryDisabled ? 'disabled' : ''
-  }>
-    <option value="all">Без категории</option>
-    <option value="Groceries">Продукты</option>
-    <option value="Payments">Платежи</option>
-    <option value="College">Колледж</option>
+  <select class="tack-item__select" ${item.check ? 'disabled' : ''}>
+    <option  value="All">Без категории</option>
+    <option ${
+      item.category == 'Groceries' ? 'selected' : ''
+    } value="Groceries" >Продукты</option>
+    <option ${
+      item.category == 'Payments' ? 'selected' : ''
+    } value="Payments">Платежи</option>
+    <option ${
+      item.category == 'College' ? 'selected' : ''
+    } value="College">Колледж</option>
   </select>
   <div class="tack-item__delete"></div>
 </div>
@@ -65,7 +70,7 @@ function addTacksDOM(arr) {
   });
   tackList.innerHTML = tacksDOM;
 }
-
+// изменение check
 tackList.addEventListener('click', e => {
   if (e.target.closest('.tack-item__checkbox')) {
     const tackItem = e.target.closest('.tack-item__checkbox').parentElement
@@ -80,10 +85,68 @@ function checkTack(tack, arr) {
   arr.forEach(item => {
     if (item.id == tack.id) {
       item.check = !item.check;
-      item.isCategoryDisabled = !item.isCategoryDisabled;
+    }
+  });
+}
+// Удаление задачи
+tackList.addEventListener('click', e => {
+  if (e.target.closest('.tack-item__delete')) {
+    const tackItem = e.target.closest('.tack-item__delete').parentElement;
+
+    deleteTack(tackItem, arrTack);
+  }
+});
+
+// Функция удаления задачи из массива
+function deleteTack(tack, arr) {
+  arr.forEach((item, index) => {
+    if (item.id == tack.id) {
+      arr.splice(index, 1);
     }
   });
   addTacksDOM(arrTack);
 }
 
-// Функция удаления из массива
+//Изменение категории
+tackList.addEventListener('click', e => {
+  const selectDOM = e.target.closest('select');
+  if (selectDOM) {
+    const tackItem = selectDOM.parentElement;
+
+    selectTack(tackItem, arrTack, selectDOM);
+  }
+});
+
+//Функция изменения категории в массиве
+function selectTack(tack, arr, select) {
+  arr.forEach(item => {
+    if (item.id == tack.id) {
+      item.category = select.value;
+    }
+  });
+}
+
+//Фильтрация категорий
+categories.addEventListener('click', e => {
+  if (!e.target.closest('.todo-categories__link_active')) {
+    categories
+      .querySelector('.todo-categories__link_active')
+      .classList.remove('todo-categories__link_active');
+
+    const categoryClicked = e.target.closest('.todo-categories__link');
+
+    categoryClicked.classList.add('todo-categories__link_active');
+
+    filterTack(arrTack, categoryClicked);
+  }
+});
+
+//Функция фильтрация задач по категории
+function filterTack(arr, category) {
+  if (category.id !== 'All') {
+    const filterArr = arr.filter(item => item.category == category.id);
+    addTacksDOM(filterArr);
+  } else {
+    addTacksDOM(arr);
+  }
+}
