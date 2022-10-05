@@ -1,0 +1,113 @@
+@media (max-width: 850px) {
+  .todo-categories {
+    width: 180px;
+    &__item {
+      &:not(last-child) {
+        margin-bottom: 16px;
+      }
+    }
+    &__link {
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+
+  .todo-main {
+    padding: 20px;
+    &__title {
+      font-size: 28px;
+      line-height: 32px;
+      margin-bottom: 12px;
+    }
+  }
+  .new-tack {
+    margin-bottom: 20px;
+    &__input {
+      padding: 0 16px;
+      font-size: 14px;
+      line-height: 18px;
+      width: 86%;
+    }
+    &__add {
+      width: 40px;
+      height: 40px;
+      &::before {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  .tack-item {
+    &:not(last-child) {
+      margin-bottom: 12px;
+    }
+    &__wrapper {
+      margin-right: 14px;
+    }
+    &__checkbox {
+      &:checked ~ .tack-item__checkmark::after {
+        width: 8px;
+        height: 12px;
+      }
+    }
+    &__text {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    &__delete {
+      width: 18px;
+      height: 18px;
+    }
+    &__checkmark {
+      width: 26px;
+      height: 26px;
+    }
+    &__select {
+      width: 90px;
+      padding: 5px 0px;
+      font-size: 10px;
+      line-height: 12px;
+      border-radius: 4px;
+      margin-right: 15px;
+    }
+  }
+}
+
+@media (max-width: 580px) {
+  .container {
+    padding: 60px 10px;
+  }
+  .todo-categories {
+    background-color: #d8d8d8;
+    position: absolute;
+    z-index: 2;
+    right: -60%;
+    width: 50%;
+    height: 100%;
+    padding-top: 76px;
+    transition: all 0.4s ease-in-out;
+    &_active {
+      right: 0;
+      transition: all 0.4s ease-in-out;
+    }
+  }
+  .menu-burger {
+    display: flex;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding: 20px 10px;
+  }
+  .todo {
+    width: 983px;
+    min-height: 620px;
+  }
+}
+@media (max-width: 330px) {
+  .todo {
+    min-height: 530px;
+  }
+}

@@ -1,7 +1,7 @@
 const newTack = document.querySelector('.new-tack__input');
 const tackList = document.querySelector('.tack-list');
 const newTackAdd = document.querySelector('.new-tack__add');
-const categories = document.querySelector('.todo-categories__list');
+const categoriesList = document.querySelector('.todo-categories__list');
 
 const arrTack = [];
 
@@ -86,6 +86,7 @@ function checkTack(tack, arr) {
     if (item.id == tack.id) {
       item.check = !item.check;
     }
+    addTacksDOM(arrTack);
   });
 }
 // Удаление задачи
@@ -127,13 +128,14 @@ function selectTack(tack, arr, select) {
 }
 
 //Фильтрация категорий
-categories.addEventListener('click', e => {
-  if (!e.target.closest('.todo-categories__link_active')) {
-    categories
-      .querySelector('.todo-categories__link_active')
+categoriesList.addEventListener('click', e => {
+  const link = '.todo-categories__link';
+  const linkActive = '.todo-categories__link_active';
+  if (!e.target.closest(linkActive) && e.target.closest(link)) {
+    categoriesList
+      .querySelector(linkActive)
       .classList.remove('todo-categories__link_active');
-
-    const categoryClicked = e.target.closest('.todo-categories__link');
+    const categoryClicked = e.target.closest(link);
 
     categoryClicked.classList.add('todo-categories__link_active');
 
@@ -150,3 +152,14 @@ function filterTack(arr, category) {
     addTacksDOM(arr);
   }
 }
+
+//функция бургер меню
+const menu = document.querySelector('.menu-burger');
+const categories = document.querySelector('.todo-categories');
+
+menu.addEventListener('click', e => {
+  categories.classList.add('todo-categories_active');
+});
+categories.addEventListener('click', e => {
+  categories.classList.remove('todo-categories_active');
+});
