@@ -26,6 +26,9 @@ body {
   justify-content: center;
   padding-top: 139px;
   border-right: 1px solid #d8d8d8;
+  &__list {
+    width: 60%;
+  }
   &__item {
     &:not(last-child) {
       margin-bottom: 24px;

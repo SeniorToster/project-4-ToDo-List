@@ -429,6 +429,9 @@ body {
   padding-top: 139px;
   border-right: 1px solid #d8d8d8;
 }
+.todo-categories__list {
+  width: 60%;
+}
 .todo-categories__item:not(last-child) {
   margin-bottom: 24px;
 }
@@ -665,6 +668,7 @@ body {
   .tack-item__delete {
     width: 18px;
     height: 18px;
+    opacity: 0.5;
   }
   .tack-item__checkmark {
     width: 26px;
@@ -696,6 +700,9 @@ body {
   .todo-categories_active {
     right: 0;
     transition: all 0.4s ease-in-out;
+  }
+  .todo-categories__list {
+    width: auto;
   }
   .menu-burger {
     display: flex;

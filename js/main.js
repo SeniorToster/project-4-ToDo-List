@@ -2,14 +2,31 @@ const newTack = document.querySelector('.new-tack__input');
 const tackList = document.querySelector('.tack-list');
 const newTackAdd = document.querySelector('.new-tack__add');
 const categoriesList = document.querySelector('.todo-categories__list');
+let arrTack = [];
 
-const arrTack = [];
+if (localStorage.tacks) {
+  arrTack = JSON.parse(localStorage.tacks);
+  addTacksDOM(arrTack);
+}
 
 newTackAdd.addEventListener('click', e => {
   const value = newTack.value;
   if (checkValueTack(value, arrTack)) {
     addTackArr(value, arrTack);
     addTacksDOM(arrTack);
+    newTack.value = '';
+  }
+});
+
+newTack.addEventListener('keyup', e => {
+  console.log(e.key);
+  if (e.key === 'Enter') {
+    const value = newTack.value;
+    if (checkValueTack(value, arrTack)) {
+      addTackArr(value, arrTack);
+      addTacksDOM(arrTack);
+      newTack.value = '';
+    }
   }
 });
 
@@ -77,6 +94,7 @@ tackList.addEventListener('click', e => {
       .parentElement;
 
     checkTack(tackItem, arrTack);
+    localStorage.tacks = JSON.stringify(arrTack);
   }
 });
 
@@ -95,6 +113,7 @@ tackList.addEventListener('click', e => {
     const tackItem = e.target.closest('.tack-item__delete').parentElement;
 
     deleteTack(tackItem, arrTack);
+    localStorage.tacks = JSON.stringify(arrTack);
   }
 });
 
@@ -115,6 +134,7 @@ tackList.addEventListener('click', e => {
     const tackItem = selectDOM.parentElement;
 
     selectTack(tackItem, arrTack, selectDOM);
+    localStorage.tacks = JSON.stringify(arrTack);
   }
 });
 
