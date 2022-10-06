@@ -19,7 +19,6 @@ newTackAdd.addEventListener('click', e => {
 });
 
 newTack.addEventListener('keyup', e => {
-  console.log(e.key);
   if (e.key === 'Enter') {
     const value = newTack.value;
     if (checkValueTack(value, arrTack)) {
@@ -52,6 +51,7 @@ function addTackArr(text, arr) {
     category: 'all',
   };
   arr.push(tack);
+  localStorage.tacks = JSON.stringify(arr);
 }
 
 // Функция добавления задач в ДОМ дерево
